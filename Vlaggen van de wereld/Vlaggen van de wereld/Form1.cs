@@ -15,7 +15,8 @@ namespace Vlaggen_van_de_wereld
 {
     public partial class Form1 : Form
     {
-        
+
+        public int Order = 0;
 
         /// <summary>
         /// 
@@ -27,6 +28,8 @@ namespace Vlaggen_van_de_wereld
             InitializeComponent();
 
             initializeImages();
+
+            setImage();
         }
 
         private string[] files;
@@ -51,6 +54,18 @@ namespace Vlaggen_van_de_wereld
             Debug.WriteLine(files[0]);
         }
 
+        /// <summary>
+        /// Set the current image to the next image in the array.
+        /// </summary>
+        private int newImage(int order)
+        {
+            order++;
+            FlagBox.ImageLocation = files[order];
+            Debug.WriteLine(files[order]);
+            return order;
+        }
+
+
 
         /// <summary>
         /// Get the name of the image in the specfied directory.
@@ -58,25 +73,40 @@ namespace Vlaggen_van_de_wereld
         /// <param name="Directory"></param>
         /// <returns></returns>
         private string getFileName(string Directory) {
-            string Name = "";
 
-            Name = Directory.Substring(Directory.LastIndexOf("\\"),Directory.Length);
+            string Name = Directory.Substring(Directory.LastIndexOf("\\"),Directory.Length);
 
             return Name;
         }
 
         private void createAwnsers(int Awnsers)
         {
-            for (int i = 0; i < Awnsers; i++)
+            for (int i = 1; i <= 10; i++)
             {
-
+                Control[] Button = this.Controls.Find("Anwser" + i.ToString(), true);
+                if (i <= Awnsers)
+                {
+                    Button[0].Show();
+                    Button[0].Text = "1";
+                }
+                else {
+                    Button[0].Hide();
+                }
             }
 
         }
 
-        private void PictureClick(object sender, EventArgs e)
+
+        /// <summary>
+        /// When picture with flag is clicked set and get awnsers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void PictureClick(object sender, EventArgs e)
         {
-            setImage();
+            Random rnd = new Random();
+            Order = newImage(Order);
+            createAwnsers(rnd.Next(10));
         }
     }
 }
