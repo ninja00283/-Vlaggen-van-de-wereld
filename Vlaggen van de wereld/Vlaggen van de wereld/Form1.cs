@@ -39,9 +39,10 @@ namespace Vlaggen_van_de_wereld
         /// </summary>
         private void initializeImages()
         {
-            string appRoot = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            files = System.IO.Directory.GetFiles(appRoot + @"\Flags");
+            files = System.IO.Directory.GetFiles("..\\..\\.\\flags");
         }
+
+        
 
         /// <summary>
         /// Randomize the image array and set the image to the first image in the array.
