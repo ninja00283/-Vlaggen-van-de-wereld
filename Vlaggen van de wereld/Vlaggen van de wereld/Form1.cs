@@ -15,8 +15,10 @@ namespace Vlaggen_van_de_wereld
 {
     public partial class Form1 : Form
     {
+        private Random rnd = new Random();
 
         public int Order = 0;
+        public int Difficulty = 1;
 
         /// <summary>
         /// 
@@ -49,7 +51,6 @@ namespace Vlaggen_van_de_wereld
         /// </summary>
         private void setImage()
         {
-            Random rnd = new Random();
             files = files.OrderBy(x => rnd.Next()).ToArray();
             FlagBox.ImageLocation = files[0];
             Debug.WriteLine(files[0]);
@@ -66,29 +67,59 @@ namespace Vlaggen_van_de_wereld
             return order;
         }
 
-
+        /// <summary>
+        /// Set the current image to the next image in the array.
+        /// </summary>
+        private string randomImage()
+        {
+            return files[rnd.Next(files.Length)];
+        }
 
         /// <summary>
-        /// Get the name of the image in the specfied directory.
+        /// Take a string of a directory(string Directory) and take the name of the file.
+        /// 
+        /// Currently takes string and cuts of th last 4 characters (.png).
+        /// This will be aproblem with longer file types.
+        /// 
+        /// to do
+        /// 
+        /// support for multiple file types
         /// </summary>
         /// <param name="Directory"></param>
         /// <returns></returns>
         private string getFileName(string Directory) {
-
-            string Name = Directory.Substring(Directory.LastIndexOf("\\"),Directory.Length);
+            Debug.Print(Directory);
+            string Name = Directory.Substring(Directory.LastIndexOf("\\")+1,Directory.Length-Directory.LastIndexOf("\\")-5);
 
             return Name;
         }
 
-        private void createAwnsers(int Awnsers)
+        private void createAwnsers(int AwnserAmount)
         {
-            for (int i = 1; i <= 10; i++)
+            AwnserAmount *= 3;
+            String[] Awnsers = new String[3];
+
+            int correctAwnser = rnd.Next(AwnserAmount);
+
+            for (int i = 0; i < AwnserAmount; i++)
+            {
+                if (i == correctAwnser) {
+                    Awnsers[i] = getFileName(files[Order]);
+                }
+                else {
+                    Awnsers[i] = getFileName(randomImage());
+                }
+            }
+
+
+
+            for (int i = 1; i <= 9; i++)
             {
                 Control[] Button = this.Controls.Find("Anwser" + i.ToString(), true);
-                if (i <= Awnsers)
+                if (i <= AwnserAmount)
                 {
                     Button[0].Show();
-                    Button[0].Text = "1";
+                    Button[0].Text = Awnsers[i-1];
                 }
                 else {
                     Button[0].Hide();
@@ -99,15 +130,14 @@ namespace Vlaggen_van_de_wereld
 
 
         /// <summary>
-        /// When picture with flag is clicked set and get awnsers
+        /// When picture with flag is clicked set and get new awnsers and a new flag
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void PictureClick(object sender, EventArgs e)
         {
-            Random rnd = new Random();
             Order = newImage(Order);
-            createAwnsers(rnd.Next(10));
+            createAwnsers(Difficulty);
         }
     }
 }

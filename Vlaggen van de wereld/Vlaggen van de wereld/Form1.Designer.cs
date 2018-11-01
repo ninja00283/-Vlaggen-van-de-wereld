@@ -30,7 +30,6 @@
         {
             this.FlagBox = new System.Windows.Forms.PictureBox();
             this.AwnserBox = new System.Windows.Forms.GroupBox();
-            this.Anwser10 = new System.Windows.Forms.RadioButton();
             this.Anwser7 = new System.Windows.Forms.RadioButton();
             this.Anwser8 = new System.Windows.Forms.RadioButton();
             this.Anwser9 = new System.Windows.Forms.RadioButton();
@@ -57,7 +56,6 @@
             // 
             // AwnserBox
             // 
-            this.AwnserBox.Controls.Add(this.Anwser10);
             this.AwnserBox.Controls.Add(this.Anwser7);
             this.AwnserBox.Controls.Add(this.Anwser8);
             this.AwnserBox.Controls.Add(this.Anwser9);
@@ -72,17 +70,6 @@
             this.AwnserBox.Size = new System.Drawing.Size(312, 426);
             this.AwnserBox.TabIndex = 1;
             this.AwnserBox.TabStop = false;
-            // 
-            // Anwser10
-            // 
-            this.Anwser10.AutoSize = true;
-            this.Anwser10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Anwser10.Location = new System.Drawing.Point(7, 391);
-            this.Anwser10.Name = "Anwser10";
-            this.Anwser10.Size = new System.Drawing.Size(17, 16);
-            this.Anwser10.TabIndex = 9;
-            this.Anwser10.TabStop = true;
-            this.Anwser10.UseVisualStyleBackColor = true;
             // 
             // Anwser7
             // 
@@ -206,7 +193,6 @@
         private System.Windows.Forms.RadioButton Anwser2;
         private System.Windows.Forms.RadioButton Anwser3;
         private System.Windows.Forms.RadioButton Anwser4;
-        private System.Windows.Forms.RadioButton Anwser10;
         private System.Windows.Forms.RadioButton Anwser7;
         private System.Windows.Forms.RadioButton Anwser8;
         private System.Windows.Forms.RadioButton Anwser9;
