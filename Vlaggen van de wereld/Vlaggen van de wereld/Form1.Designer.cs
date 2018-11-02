@@ -39,6 +39,7 @@
             this.Anwser3 = new System.Windows.Forms.RadioButton();
             this.Anwser4 = new System.Windows.Forms.RadioButton();
             this.Anwser1 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FlagBox)).BeginInit();
             this.AwnserBox.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             // AwnserBox
             // 
+            this.AwnserBox.Controls.Add(this.button1);
             this.AwnserBox.Controls.Add(this.Anwser7);
             this.AwnserBox.Controls.Add(this.Anwser8);
             this.AwnserBox.Controls.Add(this.Anwser9);
@@ -67,7 +69,7 @@
             this.AwnserBox.Controls.Add(this.Anwser1);
             this.AwnserBox.Location = new System.Drawing.Point(476, 12);
             this.AwnserBox.Name = "AwnserBox";
-            this.AwnserBox.Size = new System.Drawing.Size(312, 426);
+            this.AwnserBox.Size = new System.Drawing.Size(549, 426);
             this.AwnserBox.TabIndex = 1;
             this.AwnserBox.TabStop = false;
             // 
@@ -170,11 +172,21 @@
             this.Anwser1.TabStop = true;
             this.Anwser1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(7, 372);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 48);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ViewerMode);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1037, 450);
             this.Controls.Add(this.AwnserBox);
             this.Controls.Add(this.FlagBox);
             this.Name = "Form1";
@@ -199,6 +211,7 @@
         private System.Windows.Forms.RadioButton Anwser6;
         private System.Windows.Forms.RadioButton Anwser5;
         private System.Windows.Forms.RadioButton Anwser1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

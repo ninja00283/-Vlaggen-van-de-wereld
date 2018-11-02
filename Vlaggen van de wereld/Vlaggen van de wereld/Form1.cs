@@ -16,9 +16,9 @@ namespace Vlaggen_van_de_wereld
     public partial class Form1 : Form
     {
         private Random rnd = new Random();
-
+        FlagViewer flagViewer;
         public int Order = 0;
-        public int Difficulty = 1;
+        public int Difficulty = 2;
 
         /// <summary>
         /// 
@@ -32,6 +32,8 @@ namespace Vlaggen_van_de_wereld
             initializeImages();
 
             setImage();
+
+            flagViewer = new FlagViewer();
         }
 
         private string[] files;
@@ -94,32 +96,41 @@ namespace Vlaggen_van_de_wereld
             return Name;
         }
 
-        private void createAwnsers(int AwnserAmount)
+
+        /// <summary>
+        /// 
+        /// to do write comment
+        /// 
+        /// </summary>
+        /// <param name="AnswerAmount"></param>
+        private void createAwnsers(int AnswerAmount)
         {
-            AwnserAmount *= 3;
-            String[] Awnsers = new String[3];
+            AnswerAmount *= 3;
+            String[] Answers = new String[AnswerAmount];
 
-            int correctAwnser = rnd.Next(AwnserAmount);
+            int correctAnswer = rnd.Next(AnswerAmount);
 
-            for (int i = 0; i < AwnserAmount; i++)
+            for (int i = 0; i < AnswerAmount; i++)
             {
-                if (i == correctAwnser) {
-                    Awnsers[i] = getFileName(files[Order]);
+                if (i == correctAnswer) {
+                    Answers[i] = getFileName(files[Order]);
                 }
                 else {
-                    Awnsers[i] = getFileName(randomImage());
+                    Answers[i] = getFileName(randomImage());
+
+                    
                 }
             }
 
 
-
+            
             for (int i = 1; i <= 9; i++)
             {
                 Control[] Button = this.Controls.Find("Anwser" + i.ToString(), true);
-                if (i <= AwnserAmount)
+                if (i <= AnswerAmount)
                 {
                     Button[0].Show();
-                    Button[0].Text = Awnsers[i-1];
+                    Button[0].Text = Answers[i-1];
                 }
                 else {
                     Button[0].Hide();
@@ -138,6 +149,16 @@ namespace Vlaggen_van_de_wereld
         {
             Order = newImage(Order);
             createAwnsers(Difficulty);
+        }
+
+        private void ViewerMode(object sender, MouseEventArgs e)
+        {
+            if (flagViewer.IsDisposed)
+            {
+                flagViewer = new FlagViewer();
+            }
+
+            flagViewer.Show();
         }
     }
 }
