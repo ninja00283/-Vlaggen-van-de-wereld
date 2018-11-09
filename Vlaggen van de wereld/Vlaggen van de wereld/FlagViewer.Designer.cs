@@ -41,6 +41,7 @@
             this.Name = "FlagViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FlagViewer";
+            this.Load += new System.EventHandler(this.FlagViewer_Load);
             this.ResumeLayout(false);
 
         }

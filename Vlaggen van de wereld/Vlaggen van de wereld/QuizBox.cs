@@ -13,10 +13,9 @@ using System.Windows.Forms;
 
 namespace Vlaggen_van_de_wereld
 {
-    public partial class Form1 : Form
+    public partial class QuizBox : Form
     {
         private Random rnd = new Random();
-        FlagViewer flagViewer;
         public int Order = 0;
         public int Difficulty = 2;
 
@@ -25,15 +24,19 @@ namespace Vlaggen_van_de_wereld
         /// Get the images from the map.
         /// 
         /// </summary>
-        public Form1()
+        private void QuizBoxLoad(object sender, EventArgs e)
         {
-            InitializeComponent();
-
+            Debug.Write("loaded");
             initializeImages();
 
-            setImage();
 
-            flagViewer = new FlagViewer();
+            Order = newImage(Order);
+            createAwnsers(Difficulty);
+        }
+
+        public QuizBox()
+        {
+            InitializeComponent();
         }
 
         private string[] files;
@@ -140,7 +143,7 @@ namespace Vlaggen_van_de_wereld
         }
 
 
-        /// <summary>
+        /// <summary>1
         /// When picture with flag is clicked set and get new awnsers and a new flag
         /// </summary>
         /// <param name="sender"></param>
@@ -151,14 +154,9 @@ namespace Vlaggen_van_de_wereld
             createAwnsers(Difficulty);
         }
 
-        private void ViewerMode(object sender, MouseEventArgs e)
+        private void nextClick(object sender, EventArgs e)
         {
-            if (flagViewer.IsDisposed)
-            {
-                flagViewer = new FlagViewer();
-            }
 
-            flagViewer.Show();
         }
     }
 }

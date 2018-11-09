@@ -1,6 +1,6 @@
 ﻿namespace Vlaggen_van_de_wereld
 {
-    partial class Form1
+    partial class QuizBox
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,7 @@
         {
             this.FlagBox = new System.Windows.Forms.PictureBox();
             this.AwnserBox = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.Anwser7 = new System.Windows.Forms.RadioButton();
             this.Anwser8 = new System.Windows.Forms.RadioButton();
             this.Anwser9 = new System.Windows.Forms.RadioButton();
@@ -39,7 +40,8 @@
             this.Anwser3 = new System.Windows.Forms.RadioButton();
             this.Anwser4 = new System.Windows.Forms.RadioButton();
             this.Anwser1 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FlagBox)).BeginInit();
             this.AwnserBox.SuspendLayout();
             this.SuspendLayout();
@@ -53,10 +55,11 @@
             this.FlagBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.FlagBox.TabIndex = 0;
             this.FlagBox.TabStop = false;
-            this.FlagBox.Click += new System.EventHandler(this.PictureClick);
             // 
             // AwnserBox
             // 
+            this.AwnserBox.Controls.Add(this.button3);
+            this.AwnserBox.Controls.Add(this.button2);
             this.AwnserBox.Controls.Add(this.button1);
             this.AwnserBox.Controls.Add(this.Anwser7);
             this.AwnserBox.Controls.Add(this.Anwser8);
@@ -72,6 +75,16 @@
             this.AwnserBox.Size = new System.Drawing.Size(549, 426);
             this.AwnserBox.TabIndex = 1;
             this.AwnserBox.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(131, 372);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(220, 47);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Accept";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.nextClick);
             // 
             // Anwser7
             // 
@@ -172,25 +185,34 @@
             this.Anwser1.TabStop = true;
             this.Anwser1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(7, 372);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 48);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ViewerMode);
+            this.button2.Location = new System.Drawing.Point(7, 372);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(56, 47);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "<";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(69, 372);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(56, 47);
+            this.button3.TabIndex = 11;
+            this.button3.Text = ">";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // QuizBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1037, 450);
             this.Controls.Add(this.AwnserBox);
             this.Controls.Add(this.FlagBox);
-            this.Name = "Form1";
+            this.Name = "QuizBox";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.QuizBoxLoad);
             ((System.ComponentModel.ISupportInitialize)(this.FlagBox)).EndInit();
             this.AwnserBox.ResumeLayout(false);
             this.AwnserBox.PerformLayout();
@@ -212,6 +234,8 @@
         private System.Windows.Forms.RadioButton Anwser5;
         private System.Windows.Forms.RadioButton Anwser1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

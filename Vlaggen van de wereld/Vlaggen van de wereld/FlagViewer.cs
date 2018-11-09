@@ -16,5 +16,10 @@ namespace Vlaggen_van_de_wereld
         {
             InitializeComponent();
         }
+
+        private void FlagViewer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
