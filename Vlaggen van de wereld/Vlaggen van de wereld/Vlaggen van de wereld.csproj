@@ -326,8 +326,6 @@
     <Content Include="flags\Zambia.png" />
     <Content Include="flags\Zimbabwe.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
