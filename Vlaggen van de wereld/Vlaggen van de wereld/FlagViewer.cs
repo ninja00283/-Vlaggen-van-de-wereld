@@ -23,6 +23,25 @@ namespace Vlaggen_van_de_wereld
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Take a string of a directory(string Directory) and take the name of the file.
+        /// 
+        /// Currently takes string and cuts of th last 4 characters (.png).
+        /// This will be aproblem with longer file types.
+        /// 
+        /// to do
+        /// 
+        /// support for multiple file types
+        /// </summary>
+        /// <param name="Directory"></param>
+        /// <returns></returns>
+        private string GetFileName(string Directory)
+        {
+            string Name = Directory.Substring(Directory.LastIndexOf("\\") + 1, Directory.Length - Directory.LastIndexOf("\\") - 5);
+
+            return Name;
+        }
+
         private void FlagViewer_Load(object sender, EventArgs e)
         {
 
@@ -43,6 +62,8 @@ namespace Vlaggen_van_de_wereld
                 PictureBox newFlagPicture = new PictureBox();
 
                 newFlagPicture.ImageLocation = files[i];
+                ToolTip Tag = new ToolTip();
+                Tag.SetToolTip(newFlagPicture, GetFileName(files[i]).Replace('_',' '));
                 this.Panel.Controls.Add(newFlagPicture);
 
                 newFlagPicture.Size = new Size(100,100);

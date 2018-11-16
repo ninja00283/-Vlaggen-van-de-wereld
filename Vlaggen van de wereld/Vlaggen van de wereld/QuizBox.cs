@@ -19,7 +19,7 @@ namespace Vlaggen_van_de_wereld
         public int Order = 1;
         public int Difficulty = 2;
 
-        public List<string> Accepted = new List<string>();
+        public List<Questions> Accepted = new List<Questions>();
 
         public String[] Answers;
 
@@ -55,7 +55,7 @@ namespace Vlaggen_van_de_wereld
             files = System.IO.Directory.GetFiles("..\\..\\.\\flags");
         }
 
-        
+
 
         /// <summary>
         /// Randomize the image array and set the image to the first image in the array.
@@ -72,7 +72,7 @@ namespace Vlaggen_van_de_wereld
         private bool NewImage()
         {
             bool Success = false;
-            if (Order == files.Length-1)
+            if (Order == files.Length - 1)
             {
                 MessageBox.Show("Last flag already reached",
                 "Last flag",
@@ -109,7 +109,7 @@ namespace Vlaggen_van_de_wereld
                 //MessageBoxIcon.Information  // for Information
                 //MessageBoxIcon.Question // for Question
                );
-               Success = false;
+                Success = false;
             }
             else
             {
@@ -141,7 +141,7 @@ namespace Vlaggen_van_de_wereld
         /// <param name="Directory"></param>
         /// <returns></returns>
         private string GetFileName(string Directory) {
-            string Name = Directory.Substring(Directory.LastIndexOf("\\")+1,Directory.Length-Directory.LastIndexOf("\\")-5);
+            string Name = Directory.Substring(Directory.LastIndexOf("\\") + 1, Directory.Length - Directory.LastIndexOf("\\") - 5);
 
             return Name;
         }
@@ -168,7 +168,7 @@ namespace Vlaggen_van_de_wereld
                 else {
                     Answers[i] = GetFileName(RandomImage());
 
-                    
+
                 }
             }
 
@@ -188,11 +188,23 @@ namespace Vlaggen_van_de_wereld
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// todo
+        /// rwrite comments
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AcceptClick(object sender, EventArgs e)
         {
-   
-            Accepted.Add(Answers[Int32.Parse(Answer.Name.Split('_').Last())-1] + "~" + GetFileName(files[Order]));
+
+            //Accepted.Add(Answers[Int32.Parse(Answer.Name.Split('_').Last()) - 1] + "~" + GetFileName(files[Order]));
+
+            Questions question = new Questions(Order, GetFileName( files[Order]), Answers[Int32.Parse(Answer.Name.Split('_').Last()) - 1]);
+
+            Accepted.Add(question);
             bool success = NewImage();
             if (success) { CreateAwnsers(Difficulty); }
 
@@ -221,8 +233,8 @@ namespace Vlaggen_van_de_wereld
             int Incorrect = 0;
             for (int i = 0; i < Accepted.Count(); i++)
             {
-                string[] CurrentAnswer = Accepted[i].Split('~');
-                if (CurrentAnswer.First() == CurrentAnswer.Last())
+                //string[] CurrentAnswer = Accepted[i].Split('~');
+                if (Accepted[i].SelectedAnswer == Accepted[i].RightAnswer)
                 {
                     Correct++;
                 }
@@ -230,8 +242,32 @@ namespace Vlaggen_van_de_wereld
                 {
                     Incorrect++;
                 }
+
+
             }
-            Debug.Print(Correct.ToString() + "-" + Incorrect.ToString() + "-"+ Accepted.Count());
+            //Debug.Print(Correct.ToString() + "-" + Incorrect.ToString() + "-" + Accepted.Count());
         }
+
+
+        public class Questions
+        {
+
+            public int Position { get; set; }
+            public string RightAnswer { get; set; }
+            public string SelectedAnswer { get; set; }
+
+            public Questions(int position , string rightAnswer, string selectedAnswer)
+            {
+                Position = position;
+                RightAnswer = rightAnswer;
+                SelectedAnswer = selectedAnswer;
+            }
+        } 
+
     }
+
+    
+
+    
+
 }
