@@ -36,7 +36,7 @@
             this.Panel.AutoScroll = true;
             this.Panel.Location = new System.Drawing.Point(12, 12);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(532, 563);
+            this.Panel.Size = new System.Drawing.Size(923, 576);
             this.Panel.TabIndex = 0;
             // 
             // FlagViewer
@@ -44,9 +44,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(556, 587);
+            this.ClientSize = new System.Drawing.Size(947, 600);
             this.ControlBox = false;
             this.Controls.Add(this.Panel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FlagViewer";

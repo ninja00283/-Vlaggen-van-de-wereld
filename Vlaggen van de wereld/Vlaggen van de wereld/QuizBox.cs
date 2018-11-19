@@ -16,7 +16,7 @@ namespace Vlaggen_van_de_wereld
     public partial class QuizBox : Form
     {
         private Random rnd = new Random();
-        public int Order = 1;
+        public int Order = -1;
         public int Difficulty = 2;
 
         public List<Questions> Accepted = new List<Questions>();
@@ -33,11 +33,16 @@ namespace Vlaggen_van_de_wereld
         private void QuizBoxLoad(object sender, EventArgs e)
         {
             Debug.Write("loaded");
-            InitializeImages();
-
-
-            bool success = PreviousImage();
-            if (success) { CreateAwnsers(Difficulty); }
+            bool Init = InitializeImages();
+            if (!Init)
+            {
+                Close();
+            }
+            else { 
+                SetImage();
+                bool success = NewImage();
+                if (success) { CreateAwnsers(Difficulty); }
+            }
         }
 
         public QuizBox()
@@ -45,14 +50,33 @@ namespace Vlaggen_van_de_wereld
             InitializeComponent();
         }
 
-        private string[] files;
+        private List<string> files = new List<string>();
 
         /// <summary>
         /// Grab directories in your images directory.
         /// </summary>
-        private void InitializeImages()
+        private bool InitializeImages()
         {
-            files = System.IO.Directory.GetFiles("..\\..\\.\\flags");
+            for (int i = 0; i < MainMenu.SelectedFlags.Count; i++)
+            {
+                if (MainMenu.SelectedFlags[i].Used)
+                {
+                    files.Add(MainMenu.SelectedFlags[i].Path);
+                }
+            }
+            if (files.Count <= 1) {
+                MessageBox.Show("Not enough flags",
+                "Not enough flags, please select more",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning // for Warning  
+                //MessageBoxIcon.Error // for Error 
+                //MessageBoxIcon.Information  // for Information
+                //MessageBoxIcon.Question // for Question
+               );
+                return false;
+            }
+            Debug.Print(files.Count.ToString());
+            return true;
         }
 
 
@@ -62,8 +86,13 @@ namespace Vlaggen_van_de_wereld
         /// </summary>
         private void SetImage()
         {
-            files = files.OrderBy(x => rnd.Next()).ToArray();
-            FlagBox.ImageLocation = files[0];
+            for (int i = 0; i < files.Count; i++)
+            {
+                string temp = files[i];
+                int randomIndex = rnd.Next(i, files.Count);
+                files[i] = files[randomIndex];
+                files[randomIndex] = temp;
+            }
         }
 
         /// <summary>
@@ -72,7 +101,7 @@ namespace Vlaggen_van_de_wereld
         private bool NewImage()
         {
             bool Success = false;
-            if (Order == files.Length - 1)
+            if (Order == files.Count - 1)
             {
                 MessageBox.Show("Last flag already reached",
                 "Last flag",
@@ -99,7 +128,7 @@ namespace Vlaggen_van_de_wereld
         private bool PreviousImage()
         {
             bool Success = false;
-            if (Order == 0)
+            if (Order == 1)
             {
                 MessageBox.Show("first flag already reached",
                 "first flag",
@@ -125,7 +154,7 @@ namespace Vlaggen_van_de_wereld
         /// </summary>
         private string RandomImage()
         {
-            return files[rnd.Next(files.Length)];
+            return files[rnd.Next(files.Count)];
         }
 
         /// <summary>
@@ -149,7 +178,11 @@ namespace Vlaggen_van_de_wereld
 
         /// <summary>
         /// 
-        /// to do write comment
+        /// take the difficulty times 3 and store it as AnswerAmount.
+        /// 
+        /// then do a for loop and select an existing flag or the right answer and store it in Answers
+        /// 
+        /// then set the text of the radio button to the Answers
         /// 
         /// </summary>
         /// <param name="AnswerAmount"></param>
@@ -210,23 +243,28 @@ namespace Vlaggen_van_de_wereld
 
         }
 
+        //if arrow is clicked
         private void PreviousClick(object sender, EventArgs e)
         {
             bool success = PreviousImage();
             if (success) { CreateAwnsers(Difficulty); }
         }
 
+        //if the right arrow is clicked
         private void NextClick(object sender, EventArgs e)
         {
             bool success = NewImage();
             if (success) { CreateAwnsers(Difficulty); }
         }
 
+        //if accept is clicked
         private void AwnserClick(object sender, EventArgs e)
         {
             Answer = (RadioButton)sender;
         }
 
+
+        //if done is clicked
         private void DoneClick(object sender, EventArgs e)
         {
             int Correct = 0;
@@ -245,10 +283,12 @@ namespace Vlaggen_van_de_wereld
 
 
             }
-            //Debug.Print(Correct.ToString() + "-" + Incorrect.ToString() + "-" + Accepted.Count());
+            Debug.Print(Correct.ToString() + "-" + Incorrect.ToString() + "-" + Accepted.Count());
         }
 
-
+        /// <summary>
+        /// take the posistion of the answer, the rightAnswer and the selectedAnswer
+        /// </summary>
         public class Questions
         {
 

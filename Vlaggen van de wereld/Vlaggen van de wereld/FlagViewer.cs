@@ -13,7 +13,9 @@ namespace Vlaggen_van_de_wereld
 {
     public partial class FlagViewer : Form
     {
-        private string[] files;
+        
+
+        
 
         private int X;
         private int Y;
@@ -42,45 +44,99 @@ namespace Vlaggen_van_de_wereld
             return Name;
         }
 
+
+        /// <summary>
+        /// 
+        /// get the flags from the directory and then create a picturebox with a tag and a label for each
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FlagViewer_Load(object sender, EventArgs e)
         {
 
             AdjustFormScrollbars(true);
             this.Panel.VerticalScroll.Visible = true;
 
-            files = System.IO.Directory.GetFiles("..\\..\\.\\flags");
+            
 
-            X = 10;
+            X = 40;
             Y = 10;
 
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < MainMenu.SelectedFlags.Count; i++)
             {
 
 
                 Debug.Print(i.ToString());
 
-                PictureBox newFlagPicture = new PictureBox();
-
-                newFlagPicture.ImageLocation = files[i];
+                PictureBox newFlagPicture = new PictureBox
+                {
+                    ImageLocation = MainMenu.SelectedFlags[i].Path
+                };
+                Label label = new Label();
                 ToolTip Tag = new ToolTip();
-                Tag.SetToolTip(newFlagPicture, GetFileName(files[i]).Replace('_',' '));
+                Tag.SetToolTip(newFlagPicture, GetFileName(MainMenu.SelectedFlags[i].Path).Replace('_',' '));
+                label.Parent = newFlagPicture;
+                label.Text = GetFileName(MainMenu.SelectedFlags[i].Path).Replace('_', ' ');
+
+                newFlagPicture.Click += PictureClick;
+
+
+                PictureBox newFlagborder = new PictureBox();
+
+
+                newFlagborder.Name = "FlagBorder" + i.ToString();
+                newFlagPicture.Name = "FlagImage" + i.ToString();
+
+                
                 this.Panel.Controls.Add(newFlagPicture);
+                this.Panel.Controls.Add(newFlagborder);
 
                 newFlagPicture.Size = new Size(100,100);
+                newFlagborder.Size = new Size(20, 20);
                 newFlagPicture.SizeMode = PictureBoxSizeMode.Zoom;
 
-                if (X + newFlagPicture.Width >= this.Width - 20)
+
+                if (X + newFlagPicture.Width >= this.Width - 40)
                 {
-                    X = 10;
+                    X = 40;
                     Y += newFlagPicture.Height;
                 }
                 else {
                     X += newFlagPicture.Width + 10;
                 }
-
-                newFlagPicture.Location = new Point(X,Y);
-
+ 
+                newFlagborder.BackColor = Color.Gray;
+                
             }
         }
+
+        private void PictureClick(object sender, EventArgs e)
+        {
+            PictureBox Sender = sender as PictureBox;
+            for (int i = 0; i < MainMenu.SelectedFlags.Count; i++)
+            {
+                if (MainMenu.SelectedFlags[i].Path == Sender.ImageLocation)
+                {
+                    MainMenu.SelectedFlags[i].Used = !MainMenu.SelectedFlags[i].Used;
+                    Control[] FlagImage = this.Controls.Find("FlagImage" + i.ToString(), true);
+                    Control[] FlagBorder = this.Controls.Find("FlagBorder" + i.ToString(), true);
+                    PictureBox flagBorder = FlagBorder.First() as PictureBox;
+                    if (MainMenu.SelectedFlags[i].Used)
+                    { 
+                        flagBorder.BackColor = Color.Green;
+                    }
+                    else
+                    {
+
+                        flagBorder.BackColor = Color.Gray;
+                    }
+
+                }
+            }
+        }
+
+        
+
     }
 }
