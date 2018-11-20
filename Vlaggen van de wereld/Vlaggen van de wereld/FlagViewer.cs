@@ -82,18 +82,13 @@ namespace Vlaggen_van_de_wereld
                 newFlagPicture.Click += PictureClick;
 
 
-                PictureBox newFlagborder = new PictureBox();
 
-
-                newFlagborder.Name = "FlagBorder" + i.ToString();
                 newFlagPicture.Name = "FlagImage" + i.ToString();
 
                 
                 this.Panel.Controls.Add(newFlagPicture);
-                this.Panel.Controls.Add(newFlagborder);
 
                 newFlagPicture.Size = new Size(100,100);
-                newFlagborder.Size = new Size(20, 20);
                 newFlagPicture.SizeMode = PictureBoxSizeMode.Zoom;
 
 
@@ -105,8 +100,8 @@ namespace Vlaggen_van_de_wereld
                 else {
                     X += newFlagPicture.Width + 10;
                 }
- 
-                newFlagborder.BackColor = Color.Gray;
+
+                newFlagPicture.BackColor = Color.Gray;
                 
             }
         }
@@ -120,16 +115,14 @@ namespace Vlaggen_van_de_wereld
                 {
                     MainMenu.SelectedFlags[i].Used = !MainMenu.SelectedFlags[i].Used;
                     Control[] FlagImage = this.Controls.Find("FlagImage" + i.ToString(), true);
-                    Control[] FlagBorder = this.Controls.Find("FlagBorder" + i.ToString(), true);
-                    PictureBox flagBorder = FlagBorder.First() as PictureBox;
+                    PictureBox flagImage = FlagImage.First() as PictureBox;
                     if (MainMenu.SelectedFlags[i].Used)
-                    { 
-                        flagBorder.BackColor = Color.Green;
+                    {
+                        flagImage.BackColor = Color.Green;
                     }
                     else
                     {
-
-                        flagBorder.BackColor = Color.Gray;
+                        flagImage.BackColor = Color.Gray;
                     }
 
                 }

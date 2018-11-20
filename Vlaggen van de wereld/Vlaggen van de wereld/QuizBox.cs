@@ -17,7 +17,7 @@ namespace Vlaggen_van_de_wereld
     {
         private Random rnd = new Random();
         public int Order = -1;
-        public int Difficulty = 2;
+        public int Difficulty = MainMenu.Difficulty;
 
         public List<Questions> Accepted = new List<Questions>();
 

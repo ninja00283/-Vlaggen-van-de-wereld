@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace Vlaggen_van_de_wereld
 
         public static List<Flags> SelectedFlags = new List<Flags>();
 
+        public static int Difficulty = 1;
+
         FlagViewer flagViewer;
         QuizBox quizBox;
 
@@ -23,6 +26,8 @@ namespace Vlaggen_van_de_wereld
         public MainMenu()
         {
             InitializeComponent();
+
+            DifficultyBox.SelectedIndex = 0;
 
             flagViewer = new FlagViewer();
             quizBox = new QuizBox();
@@ -68,6 +73,12 @@ namespace Vlaggen_van_de_wereld
                 quizBox = new QuizBox();
             }
             quizBox.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Difficulty = DifficultyBox.SelectedIndex+1;
+            Debug.Print(Difficulty.ToString());
         }
     }
 }
