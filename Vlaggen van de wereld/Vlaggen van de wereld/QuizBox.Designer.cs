@@ -30,6 +30,7 @@
         {
             this.FlagBox = new System.Windows.Forms.PictureBox();
             this.AwnserBox = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.Answer_3 = new System.Windows.Forms.RadioButton();
             this.Answer_4 = new System.Windows.Forms.RadioButton();
             this.Answer_1 = new System.Windows.Forms.RadioButton();
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FlagBox)).BeginInit();
             this.AwnserBox.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,16 @@
             this.AwnserBox.TabIndex = 1;
             this.AwnserBox.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(402, 372);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(141, 47);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Done";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.DoneClick);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(69, 372);
@@ -112,7 +122,7 @@
             // 
             this.Answer_7.AutoSize = true;
             this.Answer_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_7.Location = new System.Drawing.Point(7, 268);
+            this.Answer_7.Location = new System.Drawing.Point(6, 255);
             this.Answer_7.Name = "Answer_7";
             this.Answer_7.Size = new System.Drawing.Size(17, 16);
             this.Answer_7.TabIndex = 8;
@@ -124,7 +134,7 @@
             // 
             this.Answer_8.AutoSize = true;
             this.Answer_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_8.Location = new System.Drawing.Point(7, 309);
+            this.Answer_8.Location = new System.Drawing.Point(6, 296);
             this.Answer_8.Name = "Answer_8";
             this.Answer_8.Size = new System.Drawing.Size(17, 16);
             this.Answer_8.TabIndex = 7;
@@ -136,7 +146,7 @@
             // 
             this.Answer_9.AutoSize = true;
             this.Answer_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_9.Location = new System.Drawing.Point(7, 350);
+            this.Answer_9.Location = new System.Drawing.Point(5, 337);
             this.Answer_9.Name = "Answer_9";
             this.Answer_9.Size = new System.Drawing.Size(17, 16);
             this.Answer_9.TabIndex = 6;
@@ -148,7 +158,7 @@
             // 
             this.Answer_6.AutoSize = true;
             this.Answer_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_6.Location = new System.Drawing.Point(7, 227);
+            this.Answer_6.Location = new System.Drawing.Point(6, 214);
             this.Answer_6.Name = "Answer_6";
             this.Answer_6.Size = new System.Drawing.Size(17, 16);
             this.Answer_6.TabIndex = 5;
@@ -160,7 +170,7 @@
             // 
             this.Answer_5.AutoSize = true;
             this.Answer_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_5.Location = new System.Drawing.Point(7, 186);
+            this.Answer_5.Location = new System.Drawing.Point(6, 173);
             this.Answer_5.Name = "Answer_5";
             this.Answer_5.Size = new System.Drawing.Size(17, 16);
             this.Answer_5.TabIndex = 4;
@@ -172,7 +182,7 @@
             // 
             this.Answer_2.AutoSize = true;
             this.Answer_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_2.Location = new System.Drawing.Point(7, 63);
+            this.Answer_2.Location = new System.Drawing.Point(6, 50);
             this.Answer_2.Name = "Answer_2";
             this.Answer_2.Size = new System.Drawing.Size(17, 16);
             this.Answer_2.TabIndex = 3;
@@ -184,7 +194,7 @@
             // 
             this.Answer_3.AutoSize = true;
             this.Answer_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_3.Location = new System.Drawing.Point(7, 104);
+            this.Answer_3.Location = new System.Drawing.Point(6, 91);
             this.Answer_3.Name = "Answer_3";
             this.Answer_3.Size = new System.Drawing.Size(17, 16);
             this.Answer_3.TabIndex = 2;
@@ -196,7 +206,7 @@
             // 
             this.Answer_4.AutoSize = true;
             this.Answer_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_4.Location = new System.Drawing.Point(7, 145);
+            this.Answer_4.Location = new System.Drawing.Point(6, 132);
             this.Answer_4.Name = "Answer_4";
             this.Answer_4.Size = new System.Drawing.Size(17, 16);
             this.Answer_4.TabIndex = 1;
@@ -208,23 +218,13 @@
             // 
             this.Answer_1.AutoSize = true;
             this.Answer_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.Answer_1.Location = new System.Drawing.Point(7, 22);
+            this.Answer_1.Location = new System.Drawing.Point(6, 9);
             this.Answer_1.Name = "Answer_1";
             this.Answer_1.Size = new System.Drawing.Size(17, 16);
             this.Answer_1.TabIndex = 0;
             this.Answer_1.TabStop = true;
             this.Answer_1.UseVisualStyleBackColor = true;
             this.Answer_1.Click += new System.EventHandler(this.AwnserClick);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(402, 372);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(141, 47);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Done";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.DoneClick);
             // 
             // QuizBox
             // 

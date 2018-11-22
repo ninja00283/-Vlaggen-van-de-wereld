@@ -91,17 +91,15 @@ namespace Vlaggen_van_de_wereld
                 newFlagPicture.Size = new Size(100,100);
                 newFlagPicture.SizeMode = PictureBoxSizeMode.Zoom;
 
-
-                if (X + newFlagPicture.Width >= this.Width - 40)
+                if (MainMenu.SelectedFlags[i].Used)
                 {
-                    X = 40;
-                    Y += newFlagPicture.Height;
+                    newFlagPicture.BackColor = Color.Green;
                 }
-                else {
-                    X += newFlagPicture.Width + 10;
+                else
+                {
+                    newFlagPicture.BackColor = Color.Gray;
                 }
-
-                newFlagPicture.BackColor = Color.Gray;
+                
                 
             }
         }

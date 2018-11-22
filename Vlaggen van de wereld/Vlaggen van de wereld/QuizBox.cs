@@ -25,6 +25,8 @@ namespace Vlaggen_van_de_wereld
 
         public RadioButton Answer;
 
+        ScoreScreen scoreScreen;
+
         /// <summary>
         /// 
         /// Get the images from the map.
@@ -65,8 +67,8 @@ namespace Vlaggen_van_de_wereld
                 }
             }
             if (files.Count <= 1) {
-                MessageBox.Show("Not enough flags",
-                "Not enough flags, please select more",
+                MessageBox.Show("Not enough flags, please select more.",
+                "Not enough flags",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning // for Warning  
                 //MessageBoxIcon.Error // for Error 
@@ -103,7 +105,7 @@ namespace Vlaggen_van_de_wereld
             bool Success = false;
             if (Order == files.Count - 1)
             {
-                MessageBox.Show("Last flag already reached",
+                MessageBox.Show("Last flag already reached.",
                 "Last flag",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning // for Warning  
@@ -128,9 +130,9 @@ namespace Vlaggen_van_de_wereld
         private bool PreviousImage()
         {
             bool Success = false;
-            if (Order == 1)
+            if (Order <= 0)
             {
-                MessageBox.Show("first flag already reached",
+                MessageBox.Show("First flag already reached.",
                 "first flag",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning // for Warning  
@@ -235,8 +237,8 @@ namespace Vlaggen_van_de_wereld
 
             //Accepted.Add(Answers[Int32.Parse(Answer.Name.Split('_').Last()) - 1] + "~" + GetFileName(files[Order]));
 
-            Questions question = new Questions(Order, GetFileName( files[Order]), Answers[Int32.Parse(Answer.Name.Split('_').Last()) - 1]);
-
+            Questions question = new Questions(Order, GetFileName( files[Order]), Answers[Int32.Parse(Answer.Name.Split('_').Last()) - 1], files[Order]);
+            Debug.Print(files[Order]);
             Accepted.Add(question);
             bool success = NewImage();
             if (success) { CreateAwnsers(Difficulty); }
@@ -265,6 +267,7 @@ namespace Vlaggen_van_de_wereld
 
 
         //if done is clicked
+        /*
         private void DoneClick(object sender, EventArgs e)
         {
             int Correct = 0;
@@ -285,6 +288,11 @@ namespace Vlaggen_van_de_wereld
             }
             Debug.Print(Correct.ToString() + "-" + Incorrect.ToString() + "-" + Accepted.Count());
         }
+        */
+        private void DoneClick(object sender, EventArgs e)
+        {
+            scoreScreen = new ScoreScreen(Accepted);
+        }
 
         /// <summary>
         /// take the posistion of the answer, the rightAnswer and the selectedAnswer
@@ -295,12 +303,14 @@ namespace Vlaggen_van_de_wereld
             public int Position { get; set; }
             public string RightAnswer { get; set; }
             public string SelectedAnswer { get; set; }
+            public string FlagPath { get; set; }
 
-            public Questions(int position , string rightAnswer, string selectedAnswer)
+            public Questions(int position , string rightAnswer, string selectedAnswer, string flagPath)
             {
                 Position = position;
                 RightAnswer = rightAnswer;
                 SelectedAnswer = selectedAnswer;
+                FlagPath = flagPath;
             }
         } 
 
