@@ -28,15 +28,25 @@ namespace Vlaggen_van_de_wereld
                 {
                     ImageLocation = accepted[i].FlagPath
                 };
+
+                FlowLayoutPanel FlowPictureBox = new FlowLayoutPanel();
+
                 Label RightAnswer = new Label();
                 Label SelectedAnswer = new Label();
 
                 RightAnswer.Text = accepted[i].RightAnswer;
                 SelectedAnswer.Text = accepted[i].SelectedAnswer;
-                RightAnswer.Parent = newFlagPicture;
+                RightAnswer.Parent = FlowPictureBox;
                 SelectedAnswer.Parent = newFlagPicture;
-                flowLayoutPanel.Controls.Add(newFlagPicture);
+                newFlagPicture.Parent = FlowPictureBox;
+                flowLayoutPanel.Controls.Add(FlowPictureBox);
 
+                if (accepted[i].RightAnswer == accepted[i].SelectedAnswer) {
+                    FlowPictureBox.BackColor = Color.Green;
+                }
+                else{
+                    FlowPictureBox.BackColor = Color.Red;
+                }
                 newFlagPicture.Size = new Size(100, 100);
                 newFlagPicture.SizeMode = PictureBoxSizeMode.Zoom;
             }

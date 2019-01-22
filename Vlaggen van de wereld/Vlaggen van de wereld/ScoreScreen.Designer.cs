@@ -33,17 +33,23 @@
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(9, 10);
+            this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(412, 426);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(217, 346);
             this.flowLayoutPanel.TabIndex = 0;
             // 
             // ScoreScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 450);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(120, 0);
             this.Controls.Add(this.flowLayoutPanel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
             this.Name = "ScoreScreen";
             this.Text = "ScoreScreen";
             this.ResumeLayout(false);
